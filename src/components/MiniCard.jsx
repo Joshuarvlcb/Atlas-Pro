@@ -23,7 +23,13 @@ const MiniCard = ({ pic, page, temp, text, miniData, arr, daily, day }) => {
           }
         }}
         className="mini-card "
-        style={{ cursor: "pointer", width: "120px", position: "relative" }}
+        style={{
+          cursor: "pointer",
+          width: "120px",
+          position: "relative",
+          fontFamily: "Quicksand, sans-serif",
+          fontWeight: "bolder",
+        }}
       >
         <div className="d-flex justify-content-center">
           <img

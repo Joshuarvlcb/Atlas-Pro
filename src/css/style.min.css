@@ -10,11 +10,6 @@
   align-items: center;
 }
 
-body {
-  height: 100%;
-  font-family: "Quicksand", sans-serif;
-}
-
 .bigContainer {
   height: 100vh;
   display: flex;
@@ -126,6 +121,11 @@ body {
   align-items: center;
 }
 
+.citys div {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700 !important;
+}
+
 .icon {
   display: flex;
   justify-content: space-evenly;
@@ -168,6 +168,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  font-family: "Quicksand";
 }
 
 .details h5 {
@@ -176,6 +177,7 @@ body {
 
 .details h5 a {
   color: #4fa1ca;
+  font-weight: bold;
   text-decoration: none;
 }
 
@@ -238,6 +240,9 @@ body {
   svg.menu {
     position: fixed !important;
     top: 0;
+  }
+  .title {
+    font-family: "Balsamiq Sans", cursive;
   }
   .nav-container {
     animation-fill-mode: forwards;
@@ -375,5 +380,9 @@ body {
 .example-leave-active {
   opacity: 0;
   transition: opacity 300ms ease-in;
+}
+
+h3 {
+  font-family: "Balsamiq Sans";
 }
 /*# sourceMappingURL=style.min.css.map */

@@ -10,11 +10,6 @@
   align-items: center;
 }
 
-body {
-  height: 100%;
-  font-family: "Quicksand", sans-serif;
-}
-
 .bigContainer {
   height: 100vh;
   display: flex;
@@ -134,6 +129,10 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  div {
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700 !important;
+  }
 }
 
 .icon {
@@ -174,10 +173,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  font-family: "Quicksand";
   h5 {
     cursor: pointer;
     a {
       color: #4fa1ca;
+      font-weight: bold;
 
       text-decoration: none;
     }
@@ -246,7 +247,9 @@ body {
     position: fixed !important;
     top: 0;
   }
-
+  .title {
+    font-family: "Balsamiq Sans", cursive;
+  }
   .nav-container {
     animation-fill-mode: forwards;
     animation-duration: 0.5s;
@@ -396,4 +399,7 @@ body {
 .example-leave-active {
   opacity: 0;
   transition: opacity 300ms ease-in;
+}
+h3 {
+  font-family: "Balsamiq Sans";
 }

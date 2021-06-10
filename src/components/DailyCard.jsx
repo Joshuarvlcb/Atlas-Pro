@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import ProgressBar from "react-bootstrap/ProgressBar";
 const DailyCard = ({ temp, cityDaily }) => {
   return (
-    <div id="dailyCard" style={{ height: "55%" }}>
+    <div id="dailyCard" style={{ height: "55%", fontFamily: "Quicksand" }}>
       <Container
         className="d-flex justify-content-center card-con-con"
         style={{ height: "100%" }}
@@ -35,11 +35,17 @@ const DailyCard = ({ temp, cityDaily }) => {
                 {temp.temp.toFixed(0)}°
               </div>
 
-              <div style={{ fontSize: "20px", fontWeight: "500" }}>
+              <div style={{ fontSize: "20px", fontWeight: "600" }}>
                 {cityDaily.city}
               </div>
 
-              <div style={{ fontSize: "13px", color: "rgba(0, 0, 0, 0.6.5)" }}>
+              <div
+                style={{
+                  fontSize: "13px",
+                  color: "rgba(0, 0, 0, 0.6.5)",
+                  fontWeight: "bold",
+                }}
+              >
                 {cityDaily.country}
               </div>
             </Col>
@@ -47,31 +53,49 @@ const DailyCard = ({ temp, cityDaily }) => {
 
           <Row className="mt-2">
             <Col className="d-flex justify-content-around">
-              <div style={{ fontWeight: "500" }}>Humidity:</div>
+              <div style={{ fontWeight: "500", fontWeight: "bold" }}>
+                Humidity:
+              </div>
 
-              <div style={{ fontWeight: "500" }}>{temp.humidity}%</div>
+              <div style={{ fontWeight: "500", fontWeight: "bold" }}>
+                {temp.humidity}%
+              </div>
             </Col>
           </Row>
           <Row>
             <Col className="d-flex justify-content-center mt-1">
               <ProgressBar
                 now={temp.humidity}
-                style={{ height: "5px", padding: "0px", width: "80%" }}
+                style={{
+                  height: "5px",
+                  padding: "0px",
+                  width: "80%",
+                  fontWeight: "bold",
+                }}
               />
             </Col>
           </Row>
           <Row className="mt-2">
             <Col className="d-flex justify-content-around">
-              <div style={{ fontWeight: "500" }}>Wind Speed:</div>
+              <div style={{ fontWeight: "500", fontWeight: "bold" }}>
+                Wind Speed:
+              </div>
 
-              <div style={{ fontWeight: "500" }}>{temp.wind} mph</div>
+              <div style={{ fontWeight: "500", fontWeight: "bold" }}>
+                {temp.wind} mph
+              </div>
             </Col>
           </Row>
           <Row>
             <Col className="d-flex justify-content-center mt-1">
               <ProgressBar
                 now={temp.wind}
-                style={{ height: "5px", padding: "0px", width: "80%" }}
+                style={{
+                  height: "5px",
+                  padding: "0px",
+                  width: "80%",
+                  fontWeight: "bold",
+                }}
               />
             </Col>
           </Row>
