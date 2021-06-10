@@ -202,7 +202,7 @@ function App() {
     transition: `all 5s ease-in-out`,
     opacity: 0,
   };
-
+  console.log(Number.parseInt("FF", 16));
   return (
     <>
       {window.addEventListener("resize", checkSize)}
