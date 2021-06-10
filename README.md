@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# ATLAS
+To open the website:
+1. git clone
+2. npm i
+3. npm start
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Timeline
+    5/5/2021
+    Joshua: Began to use bootstrap and react to build the layout of the website
 
-## Available Scripts
+    5/6/2021
+    Kevin: Designed the original layout to be two navbars on the top 
+    Joshua: Designed a search bar to help search for city
 
-In the project directory, you can run:
+    5/7/2021
+    Joshua: Finished the original landing page's layout
 
-### `npm start`
+    5/9/2021
+    Joshua: Revamped and changed the entire layout of the website
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    5/10/2021
+    Joshua: Changed parts such as the navbar to make the website look more appealing
+    Kevin: Put many parts of the website into their own components and started the JSON implemenation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+    5/11/2021
+    Erik: Found SVGs, fonts, and images we could use in the website.
+    Joshua: Decided on how to display the detailed information and made the information print onto the daily card
+    Kevin: Worked more on the hourly slider and made it functional
 
-### `npm test`
+    5/12/2021
+    Joshua: Finished the logic of the daily card, making it functional
+    Kevin: Changed the hourly slider into it's own component and made it look nice
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    5/14/2021
+    Joshua: Started to implement a chart to display the temperature of whatever section you're on.
+    Kevin: Tried to make the page pull from the API but couldn't figure it out
 
-### `npm run build`
+    5/15/2021
+    Kevin: Used AXOIS to pull from the API but ended up breaking the rest of the website in the process
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    5/17/2021
+    Joshua: Started the work on mobile responsiveness of the chart, but the chart wasn't displaying information
+    Kevin: Started to make the mobile navbar
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    5/18/2021
+    Joshua: Finished the overall mobile design
+    Kevin: Made the other pages more responsive
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    5/19/2021
+    Joshua: Tried to add an animation to the mobile navbar but it wouldn't work
+    Kevin: Fixed the chart and made it display data
 
-### `npm run eject`
+    5/20/2021
+    Joshua: Made the chart more responsive
+    Kevin: Made the chart display the correct data
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    5/21/2021
+    Joshua: 
+    Kevin: Redid the cities in the mobile navbar to make it look better. Also fixed the arrows in hourly slider.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
