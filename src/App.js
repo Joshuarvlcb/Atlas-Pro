@@ -1,9 +1,9 @@
 import { RiArrowDropDownLine } from "react-icons/ri";
 import Cards from "./components/Cards.jsx";
 import Az from "./assests/az-background.jpg";
-import Italy from "./assests/italy-background.jpg";
+import Italy from "./assests/italy-background.png";
 import Paris from "./assests/paris.bg.jpg";
-import Spain from "./assests/spain-bg.jpg";
+import England from "./assests/england.jpg";
 import { CSSTransition, Transition } from "react-transition-group"; // ES6
 import { GrClose } from "react-icons/gr";
 import React, { useEffect, useState } from "react";
@@ -76,9 +76,9 @@ function App() {
     },
     {
       id: 4,
-      name: "Madrid",
+      name: "London",
       active: false,
-      src: Spain,
+      src: England,
     },
   ]);
 
@@ -191,18 +191,6 @@ function App() {
     setAnimation("out");
   };
 
-  const transitionStyles = {
-    entering: { opacity: 0 },
-    entered: { opacity: 1 },
-    exiting: { opacity: 0 },
-    exited: { opacity: 0 },
-  };
-
-  const defaultStyle = {
-    transition: `all 5s ease-in-out`,
-    opacity: 0,
-  };
-  console.log(Number.parseInt("FF", 16));
   return (
     <>
       {window.addEventListener("resize", checkSize)}

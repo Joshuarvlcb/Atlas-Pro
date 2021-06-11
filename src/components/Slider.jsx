@@ -19,13 +19,11 @@ const Slider = ({ arr, city, active, miniData, chartToggle, chart }) => {
 
   return (
     <div className="slider">
-      <div className="container d-flex justify-content-around align-items-center  chart_h3">
+      <div className=" d-flex justify-content-around align-items-center  chart_h3">
         <h3
           style={{
             paddingBottom: "20px",
             paddingLeft: "20px",
-            width: "269px",
-            alignItems: "center",
           }}
         >
           {city}
