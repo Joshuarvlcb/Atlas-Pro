@@ -48,7 +48,7 @@ function App() {
 
   const [cityDaily, setCityDaily] = useState({
     city: "Buckeye",
-    country: "United States",
+    country: "United States of America",
   });
 
   const [city, setCity] = useState("Buckeye");
@@ -81,6 +81,7 @@ function App() {
       src: England,
     },
   ]);
+  const key = 'b5dfc73c8f9e83c216a11e11f51a6251'
 
   const [chart, setChart] = useState(true);
 
@@ -95,7 +96,6 @@ function App() {
     console.log(data);
     setTemp({ temp: data.temp, humidity: humidity, wind: wind, icon: icon });
   };
-
   const data = {
     today: [
       newData["hourly"][4],
@@ -125,13 +125,26 @@ function App() {
   };
 
   const [temp, setTemp] = useState({
-    temp: weather["hourly"][4]["temp"],
-    humidity: weather["hourly"][4]["humidity"],
-    wind: weather["hourly"][4]["wind_speed"],
-    icon: "https://img.icons8.com/office/50/000000/rainbow.png",
+    // temp: weather["hourly"][4]["temp"],
+    // humidity: weather["hourly"][4]["humidity"],
+    // wind: weather["hourly"][4]["wind_speed"],
+    // icon: "https://img.icons8.com/office/50/000000/rainbow.png",
   });
-
-  const cityName = (e) => {
+  
+useEffect(() => {
+  const getData = async function(){
+   let {data:{current}} = await axios.get('http://api.weatherstack.com/current',{
+      params:{
+        query:'buckeye',
+        access_key:key,
+        units:'f'
+      }
+    })
+    setTemp({temp:current.temperature,humidity:current.humidity,wind:current.wind_speed,icon:'https://img.icons8.com/office/50/000000/rainbow.png'})
+  }
+  getData()
+},[])
+  const cityName =async (e) => {
     let target;
     if (e.target.textContent) {
       setCity(e.target.textContent);
@@ -141,6 +154,8 @@ function App() {
       target = e.target.alt;
     }
     let country;
+    
+
 
     switch (target) {
       case "Paris":
@@ -158,8 +173,20 @@ function App() {
       default:
         country = "United States";
         break;
+
+        
     }
-    console.log(country);
+
+    let {data} = await axios.get('http://api.weatherstack.com/current',{
+      params:{
+        query:target.toLowerCase(),
+        access_key:key,
+        units:'f'
+      }
+    })
+    setTemp({temp:data.current.temperature,humidity:data.current.humidity,wind:data.current.wind_speed,icon:'https://img.icons8.com/office/50/000000/rainbow.png'})
+
+    console.log(data);
     setCityDaily({
       city: target,
       country: country,
@@ -176,7 +203,6 @@ function App() {
     );
   };
   const activeCity = (e) => {
-    console.log(newData);
     cityName(e);
   };
 
@@ -190,6 +216,8 @@ function App() {
     setActiveNav(!activeNav);
     setAnimation("out");
   };
+
+  const [text,setText] = useState('')
 
   return (
     <>
@@ -262,9 +290,31 @@ function App() {
           {activePage !== "settings" ? (
             <div className="forcast-con">
               <div
-                className="justify-content-end align-items-center forehead"
+                className="justify-content-around align-items-center forehead"
                 style={{ width: "95%", height: "20%" }}
               >
+                <form action="" onSubmit = {async (e) => {
+                  e.preventDefault()
+                
+    let {data} = await axios.get('http://api.weatherstack.com/current',{
+      params:{
+        query:text.toLowerCase(),
+        access_key:key,
+        units:'f'
+      }
+    })
+    setTemp({temp:data.current.temperature,humidity:data.current.humidity,wind:data.current.wind_speed,icon:'https://img.icons8.com/office/50/000000/rainbow.png'})
+
+    setCityDaily({
+      city: data.location.name,
+      country: data.location.country,
+    });
+                }}>
+                <input value = {text} onChange = {(e) => {
+                    setText(e.target.value)
+                }}  type = 'text' placeholder = 'plaese search city'/>
+                </form>
+
                 <div className="icon">
                   <div className="icon-pic">
                     <img src={GuestIcon} alt="" />
@@ -274,6 +324,7 @@ function App() {
                     <RiArrowDropDownLine style={{ fontSize: "30px" }} />
                   </div>
                 </div>
+
               </div>
 
               <div className="daily-card-con">

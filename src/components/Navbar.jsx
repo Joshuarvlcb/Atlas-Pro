@@ -38,7 +38,7 @@ const Navbar = ({
         justify-content-between 
        "
         style={{
-          height: "30%",
+          height: "31%",
           fontFamily: "Quicksand, sans-serif",
           letterSpacing: "2px",
           width: "80%",

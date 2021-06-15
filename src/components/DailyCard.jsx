@@ -32,7 +32,7 @@ const DailyCard = ({ temp, cityDaily }) => {
           <Row>
             <Col className="d-flex  flex-column align-items-center">
               <div style={{ fontSize: "40px", fontWeight: "600" }}>
-                {temp.temp.toFixed(0)}°
+                {temp.temp}°
               </div>
 
               <div style={{ fontSize: "20px", fontWeight: "600" }}>
