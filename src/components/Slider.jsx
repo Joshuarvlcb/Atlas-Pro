@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MiniCard from "./MiniCard";
 import Detail from "./Detail";
 
@@ -11,11 +11,22 @@ const Slider = ({ arr, city, active, miniData, chartToggle, chart }) => {
         return "moon.png";
       case "02d":
         return "partly-cloudy-day--v2.png";
+      case "04d":
+        return "sun--v2.png";
+      case "02n":
+        return "partly-cloudy-night--v1.png";
+      case "10d":
+        return "light-rain.png";
+      case "03n":
+        return "partly-cloudy-day--v2.png";
     }
   };
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const times = ["Morning", "Noon", "Evening", "Night"];
+  useEffect(() => {
+    console.log(active);
+  }, [arr]);
 
   return (
     <div className="slider">
@@ -47,7 +58,9 @@ const Slider = ({ arr, city, active, miniData, chartToggle, chart }) => {
               )}`}
               className={`${active}${i}`}
               page={active}
-              temp={active === "daily" ? card.temp.day : card.temp}
+              temp={
+                active == "today" ? String(card["temp"]) : card["temp"]["day"]
+              }
               daily={{
                 h: card.humidity,
                 t: card.temp.day,

@@ -16,10 +16,13 @@ const Navbar = ({
   cityDaily,
   activeNav,
   activeF,
-  data,
   showNav,
   toggleNav,
   animation,
+  data,
+  setData,
+  dataObj,
+  activePage,
 }) => {
   return (
     <div
@@ -47,7 +50,12 @@ const Navbar = ({
       >
         <div>
           <NavLinks
+            city={cityDaily}
             name="Today"
+            dataObj={dataObj}
+            setData={setData}
+            setActive={setActive}
+            activePage={activePage}
             logo={
               <BiHome
                 color="white"
@@ -55,13 +63,17 @@ const Navbar = ({
               />
             }
             onclick={() => {
-              setActive("today");
               if (!showNav) toggleNav();
             }}
           ></NavLinks>
         </div>
         <div>
           <NavLinks
+            city={cityDaily}
+            dataObj={dataObj}
+            setData={setData}
+            activePage={activePage}
+            setActive={setActive}
             name="Hourly"
             logo={
               <Ri24HoursLine
@@ -70,14 +82,18 @@ const Navbar = ({
               />
             }
             onclick={() => {
-              setActive("hourly");
               if (!showNav) toggleNav();
             }}
           />
         </div>
         <div>
           <NavLinks
+            city={cityDaily}
+            dataObj={dataObj}
+            setData={setData}
             name="Daily"
+            setActive={setActive}
+            activePage={activePage}
             logo={
               <BiCalendarWeek
                 color="white"
@@ -85,22 +101,6 @@ const Navbar = ({
               />
             }
             onclick={() => {
-              setActive("daily");
-              if (!showNav) toggleNav();
-            }}
-          />
-        </div>
-        <div>
-          <NavLinks
-            name="Settings"
-            logo={
-              <FiSettings
-                color="white"
-                style={{ marginRight: "20px", fontSize: "30px" }}
-              />
-            }
-            onclick={() => {
-              setActive("settings");
               if (!showNav) toggleNav();
             }}
           />

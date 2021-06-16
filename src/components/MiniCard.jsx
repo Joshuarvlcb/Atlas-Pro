@@ -3,20 +3,14 @@ const MiniCard = ({ pic, page, temp, text, miniData, arr, daily, day }) => {
     <>
       <div
         onClick={() => {
-          if (page === "today" || page === "hourly") {
+          if (page == "today" || page == "hourly") {
             let clicked = arr.findIndex((obj) => {
               return obj.temp === temp;
             });
 
-            miniData(
-              temp,
-              text,
-              arr[clicked].humidity,
-              arr[clicked].wind_speed,
-              pic
-            );
+            miniData(temp, text, arr.humidity, arr.wind_speed, pic);
             console.log(pic);
-          } else if (page === "daily") {
+          } else if (page == "daily") {
             miniData(daily.t, daily.day, daily.h, daily.w, pic);
 
             console.log(arr);
@@ -45,7 +39,7 @@ const MiniCard = ({ pic, page, temp, text, miniData, arr, daily, day }) => {
         >
           {day !== undefined && <div className="day">{day}</div>}
           <div className="date">{text}</div>
-          <div className="deg">{temp.toFixed(1)}°</div>
+          <div className="deg">{temp}°</div>
         </div>
       </div>
     </>

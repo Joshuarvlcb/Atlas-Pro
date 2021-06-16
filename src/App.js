@@ -4,7 +4,6 @@ import Az from "./assests/az-background.jpg";
 import Italy from "./assests/italy-background.png";
 import Paris from "./assests/paris.bg.jpg";
 import England from "./assests/england.jpg";
-import { CSSTransition, Transition } from "react-transition-group"; // ES6
 import { GrClose } from "react-icons/gr";
 import React, { useEffect, useState } from "react";
 import Slider from "./components/Slider";
@@ -36,19 +35,9 @@ function App() {
   );
   const [activeNav, setActiveNav] = useState(false);
 
-  // useEffect( () => {
-  //   axios(`http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=004d873acf1ccd606483135a214f13d1`)
-  //   .then( (response) => {
-  //     setNewData(response.data)
-  //   })
-  //   .catch(error => {
-  //     console.error("error fetching data", error)
-  //   })
-  // })
-
   const [cityDaily, setCityDaily] = useState({
     city: "Buckeye",
-    country: "United States of America",
+    country: "United States",
   });
 
   const [city, setCity] = useState("Buckeye");
@@ -81,7 +70,7 @@ function App() {
       src: England,
     },
   ]);
-  const key = 'b5dfc73c8f9e83c216a11e11f51a6251'
+  const key = "fc628e265dd36f7b1b6b58fe603edde8";
 
   const [chart, setChart] = useState(true);
 
@@ -96,55 +85,119 @@ function App() {
     console.log(data);
     setTemp({ temp: data.temp, humidity: humidity, wind: wind, icon: icon });
   };
-  const data = {
-    today: [
-      newData["hourly"][4],
-      newData["hourly"][11],
-      newData["hourly"][16],
-      newData["hourly"][23],
-    ],
-    hourly: [],
-    grabHourly() {
-      for (let i = 0; i < 48; i++) {
-        this.hourly.push(newData["hourly"][i]);
-      }
+
+  const [temp, setTemp] = useState({});
+
+  const [data, setData] = useState([
+    {
+      today: [
+        newData["hourly"][4],
+        newData["hourly"][11],
+        newData["hourly"][16],
+        newData["hourly"][23],
+      ],
+      hourly: [
+        newData["hourly"][4],
+        newData["hourly"][11],
+        newData["hourly"][16],
+        newData["hourly"][23],
+      ],
+      daily: newData["daily"].slice(0, 7),
     },
-    arr: [],
-    data: ["01d", "02d", "03d", "01n"],
-    getDaily() {
-      this.data.forEach((curr) => {
-        for (let i in newData.hourly) {
-          if (newData.hourly[i].weather[0].icon === curr) {
-            this.arr.push(newData.hourly[i]);
-            break;
-          }
-        }
-      });
-    },
-    daily: newData["daily"].slice(0, 7),
+  ]);
+  const genData = (value, active) => {
+    setArrData(value[active]);
+    setData([{ ...value }]);
   };
 
-  const [temp, setTemp] = useState({
-    // temp: weather["hourly"][4]["temp"],
-    // humidity: weather["hourly"][4]["humidity"],
-    // wind: weather["hourly"][4]["wind_speed"],
-    // icon: "https://img.icons8.com/office/50/000000/rainbow.png",
-  });
-  
-useEffect(() => {
-  const getData = async function(){
-   let {data:{current}} = await axios.get('http://api.weatherstack.com/current',{
-      params:{
-        query:'buckeye',
-        access_key:key,
-        units:'f'
+  const getCountry = async (lat, lon) => {
+    const API_KEY = "QovUCt0Qmy4YXS3TL5YHkQr2spRE6wVW";
+    const { data } = await axios.get(
+      `https://api.tomtom.com/search/2/reverseGeocode/${lat},${lon}.json`,
+      {
+        params: {
+          key: API_KEY,
+        },
       }
-    })
-    setTemp({temp:current.temperature,humidity:current.humidity,wind:current.wind_speed,icon:'https://img.icons8.com/office/50/000000/rainbow.png'})
-  }
-  getData()
-},[])
-  const cityName =async (e) => {
+    );
+    return data.addresses[0].address.country;
+  };
+  const [arrData, setArrData] = useState([]);
+
+  const getWeather = async function (query) {
+    let { data } = await axios.get(
+      "https://api.openweathermap.org/data/2.5/weather",
+      {
+        params: {
+          q: query,
+          appid: key,
+          units: "imperial",
+        },
+      }
+    );
+
+    setTemp({
+      temp: data.main.temp,
+      humidity: data.main.humidity,
+      wind: data.wind.speed,
+      icon: "https://img.icons8.com/office/50/000000/rainbow.png",
+    });
+    // return [data.coord.lat,data.coord.lon]
+  };
+  const getCoords = async (query) => {
+    let { data } = await axios.get(
+      "https://api.openweathermap.org/data/2.5/weather",
+      {
+        params: {
+          q: query,
+          appid: key,
+          units: "imperial",
+        },
+      }
+    );
+
+    setTemp({
+      temp: data.main.temp,
+      humidity: data.main.humidity,
+      wind: data.wind.speed,
+      icon: "https://img.icons8.com/office/50/000000/rainbow.png",
+    });
+    console.log([data.coord.lat, data.coord.lon]);
+    return [data.coord.lat, data.coord.lon];
+  };
+  useEffect(() => {
+    getWeather("buckeye");
+    const getWeek = async function () {
+      const [lat, lon] = await getCoords("buckeye");
+      let { data: weatherData } = await axios.get(
+        "https://api.openweathermap.org/data/2.5/onecall",
+        {
+          params: {
+            lat: lat,
+            lon: lon,
+            appid: key,
+            units: "imperial",
+          },
+        }
+      );
+      // setData(
+      //   data.map((obj) => {
+      //     cl
+      //     return obj;
+      //   })
+      //)
+      /**
+       *data is a array with one item
+        map thorught that  
+       */
+      console.log(weatherData);
+      setArrData(weatherData.hourly.slice(0, 4));
+    };
+
+    getWeek();
+  }, []);
+
+  const cityName = async (e) => {
     let target;
     if (e.target.textContent) {
       setCity(e.target.textContent);
@@ -154,8 +207,6 @@ useEffect(() => {
       target = e.target.alt;
     }
     let country;
-    
-
 
     switch (target) {
       case "Paris":
@@ -173,20 +224,10 @@ useEffect(() => {
       default:
         country = "United States";
         break;
-
-        
     }
 
-    let {data} = await axios.get('http://api.weatherstack.com/current',{
-      params:{
-        query:target.toLowerCase(),
-        access_key:key,
-        units:'f'
-      }
-    })
-    setTemp({temp:data.current.temperature,humidity:data.current.humidity,wind:data.current.wind_speed,icon:'https://img.icons8.com/office/50/000000/rainbow.png'})
+    getWeather(target.toLowerCase());
 
-    console.log(data);
     setCityDaily({
       city: target,
       country: country,
@@ -216,24 +257,27 @@ useEffect(() => {
     setActiveNav(!activeNav);
     setAnimation("out");
   };
-
-  const [text,setText] = useState('')
+  useEffect(() => {
+    console.log(activePage);
+  }, [activePage]);
+  const [text, setText] = useState("");
 
   return (
     <>
       {window.addEventListener("resize", checkSize)}
-      {data.grabHourly()}
-      {data.getDaily()}
       <div className="bigContainer" style={{ backgroundColor: "#4FA1CA" }}>
         <div className="app-container">
           {showNav ? (
             <Navbar
+              dataObj={data}
+              setData={genData}
               toggleNav={toggleNav}
               showNav={showNav}
               data={cityData}
               activeF={activeCity}
               cityDaily={cityDaily}
               temp={temp}
+              activePage={activePage}
               setActive={(val) => {
                 setActivePage(val);
               }}
@@ -271,12 +315,15 @@ useEffect(() => {
 
           {!showNav && (
             <Navbar
+              dataObj={data}
+              setData={genData}
               toggleNav={toggleNav}
               showNav={showNav}
               data={cityData}
               activeF={activeCity}
               cityDaily={cityDaily}
               temp={temp}
+              activePage={activePage}
               setActive={(val) => {
                 setActivePage(val);
               }}
@@ -293,26 +340,42 @@ useEffect(() => {
                 className="justify-content-around align-items-center forehead"
                 style={{ width: "95%", height: "20%" }}
               >
-                <form action="" onSubmit = {async (e) => {
-                  e.preventDefault()
-                
-    let {data} = await axios.get('http://api.weatherstack.com/current',{
-      params:{
-        query:text.toLowerCase(),
-        access_key:key,
-        units:'f'
-      }
-    })
-    setTemp({temp:data.current.temperature,humidity:data.current.humidity,wind:data.current.wind_speed,icon:'https://img.icons8.com/office/50/000000/rainbow.png'})
+                <form
+                  action=""
+                  onSubmit={async (e) => {
+                    e.preventDefault();
 
-    setCityDaily({
-      city: data.location.name,
-      country: data.location.country,
-    });
-                }}>
-                <input value = {text} onChange = {(e) => {
-                    setText(e.target.value)
-                }}  type = 'text' placeholder = 'plaese search city'/>
+                    let { data } = await axios.get(
+                      "https://api.openweathermap.org/data/2.5/weather",
+                      {
+                        params: {
+                          q: text,
+                          appid: key,
+                          units: "imperial",
+                        },
+                      }
+                    );
+                    setTemp({
+                      temp: data.main.temp,
+                      humidity: data.main.humidity,
+                      wind: data.wind.speed,
+                      icon: "https://img.icons8.com/office/p50/000000/rainbow.png",
+                    });
+                    const c = getCountry(data.coord.lat, data.coord.lon);
+                    setCityDaily({
+                      city: data.name,
+                      country: await c,
+                    });
+                  }}
+                >
+                  <input
+                    value={text}
+                    onChange={(e) => {
+                      setText(e.target.value);
+                    }}
+                    type="text"
+                    placeholder="ex:venice,it"
+                  />
                 </form>
 
                 <div className="icon">
@@ -324,7 +387,6 @@ useEffect(() => {
                     <RiArrowDropDownLine style={{ fontSize: "30px" }} />
                   </div>
                 </div>
-
               </div>
 
               <div className="daily-card-con">
@@ -355,7 +417,7 @@ useEffect(() => {
                         chart={chart}
                         chartToggle={() => setChart(!chart)}
                         miniData={miniCardData}
-                        arr={data[activePage]}
+                        arr={arrData}
                         city={city}
                         active={activePage}
                       />
