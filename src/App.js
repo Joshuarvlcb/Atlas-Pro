@@ -26,7 +26,7 @@ import axios from "axios";
 function App() {
   //api key: 004d873acf1ccd606483135a214f13d1
   //33.468880958416364, -112.0893868131333
-
+  const [loader, setLoader] = useState(true);
   const [newData, setNewData] = useState(weather);
   // const [lat, setLat] = useState(33.53596730937949)
   // const [lon, setLon] = useState(-112.2928500313519)
@@ -105,9 +105,12 @@ function App() {
       daily: newData["daily"].slice(0, 7),
     },
   ]);
-  const genData = (value, active) => {
+  const genData = (value, active, str) => {
+    if (str) setLoader(true);
+    if (value == undefined && active == undefined) return;
     setArrData(value[active]);
     setData([{ ...value }]);
+    setLoader(false);
   };
 
   const getCountry = async (lat, lon) => {
@@ -414,6 +417,7 @@ function App() {
                   component={() => {
                     return activePage !== "hourly" ? (
                       <Slider
+                        loader={loader}
                         chart={chart}
                         chartToggle={() => setChart(!chart)}
                         miniData={miniCardData}

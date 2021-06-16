@@ -2,7 +2,15 @@ import React, { useEffect } from "react";
 import MiniCard from "./MiniCard";
 import Detail from "./Detail";
 
-const Slider = ({ arr, city, active, miniData, chartToggle, chart }) => {
+const Slider = ({
+  arr,
+  city,
+  active,
+  miniData,
+  chartToggle,
+  chart,
+  loader,
+}) => {
   const getIcon = function (id) {
     switch (id) {
       case "01n":
@@ -21,7 +29,6 @@ const Slider = ({ arr, city, active, miniData, chartToggle, chart }) => {
         return "partly-cloudy-day--v2.png";
     }
   };
-
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const times = ["Morning", "Noon", "Evening", "Night"];
   useEffect(() => {
@@ -47,30 +54,34 @@ const Slider = ({ arr, city, active, miniData, chartToggle, chart }) => {
         />
       </div>
       <div className="daily-slider">
-        {arr.map((card, i) => {
-          return (
-            <MiniCard
-              key={`weather${i}`}
-              arr={arr}
-              miniData={miniData}
-              pic={`https://img.icons8.com/office/50/000000/${getIcon(
-                card.weather[0].icon
-              )}`}
-              className={`${active}${i}`}
-              page={active}
-              temp={
-                active == "today" ? String(card["temp"]) : card["temp"]["day"]
-              }
-              daily={{
-                h: card.humidity,
-                t: card.temp.day,
-                day: [days[i]],
-                w: card.wind_speed,
-              }}
-              text={active === "daily" ? days[i] : times[i]}
-            />
-          );
-        })}
+        {loader ? (
+          <div class="loader"></div>
+        ) : (
+          arr.map((card, i) => {
+            return (
+              <MiniCard
+                key={`weather${i}`}
+                arr={arr}
+                miniData={miniData}
+                pic={`https://img.icons8.com/office/50/000000/${getIcon(
+                  card.weather[0].icon
+                )}`}
+                className={`${active}${i}`}
+                page={active}
+                temp={
+                  active == "today" ? String(card["temp"]) : card["temp"]["day"]
+                }
+                daily={{
+                  h: card.humidity,
+                  t: card.temp.day,
+                  day: [days[i]],
+                  w: card.wind_speed,
+                }}
+                text={active === "daily" ? days[i] : times[i]}
+              />
+            );
+          })
+        )}
       </div>
     </div>
   );

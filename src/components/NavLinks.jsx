@@ -60,7 +60,9 @@ const NavLinks = ({
       console.log(arr[activePage]);
       setData(arr, activePage);
     };
-    activeD();
+    setTimeout(() => {
+      activeD();
+    }, 1500);
   }, [activePage, city]);
 
   return (
@@ -68,6 +70,7 @@ const NavLinks = ({
       <Nav.Link
         onClick={() => {
           setActive(name.toLowerCase());
+          setData(undefined, undefined, true);
         }}
         style={{
           color: "white",
