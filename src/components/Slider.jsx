@@ -14,19 +14,43 @@ const Slider = ({
   const getIcon = function (id) {
     switch (id) {
       case "01n":
-        return "sun--v2.png";
-      case "01d":
         return "moon.png";
+
+      case "01d":
+        return "sun--v2.png";
       case "02d":
         return "partly-cloudy-day--v2.png";
       case "04d":
-        return "sun--v2.png";
+        return "cloud.png";
+      case "04n":
+        return "cloud.png";
       case "02n":
         return "partly-cloudy-night--v1.png";
+
+      case "03n":
+        return "clouds.png";
+      case "03d":
+        return "clouds.png";
+      case "09d":
+        return "rain.png";
+      case "09n":
+        return "rain.png";
       case "10d":
         return "light-rain.png";
-      case "03n":
-        return "partly-cloudy-day--v2.png";
+      case "10n":
+        return "light-rain.png";
+      case "11d":
+        return "cloud-lighting--v1.png";
+      case "11n":
+        return "cloud-lighting--v1.png";
+      case "13d":
+        return "snow.png";
+      case "13n":
+        return "snow.png";
+      case "50d":
+        return "fog-day--v1.png";
+      case "50n":
+        return "fog-night.png";
     }
   };
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -55,7 +79,7 @@ const Slider = ({
       </div>
       <div className="daily-slider">
         {loader ? (
-          <div class="loader"></div>
+          <div className="loader"></div>
         ) : (
           arr.map((card, i) => {
             return (

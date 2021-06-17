@@ -41,7 +41,12 @@ const NavLinks = ({
       );
       let helper = () => {
         return activePage.toLowerCase() === "today"
-          ? weatherData.hourly.slice(0, 4)
+          ? [
+              weatherData.hourly[0],
+              weatherData.hourly[8],
+              weatherData.hourly[12],
+              weatherData.hourly[18],
+            ]
           : weatherData.daily.slice(0, 7);
       };
       let arr = {};

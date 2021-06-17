@@ -43,6 +43,7 @@ function App() {
   const [city, setCity] = useState("Buckeye");
   const [activePage, setActivePage] = useState("today");
   const [currSlide, setCurrSlide] = useState(0);
+  const [search, setSearch] = useState("go");
   const [animation, setAnimation] = useState("out");
   const [cityData, setCityData] = useState([
     {
@@ -245,6 +246,7 @@ function App() {
         return target === obj.name ? { ...obj, active: !obj.active } : obj;
       })
     );
+    setLoader(true);
   };
   const activeCity = (e) => {
     cityName(e);
@@ -280,6 +282,7 @@ function App() {
               activeF={activeCity}
               cityDaily={cityDaily}
               temp={temp}
+              search={search}
               activePage={activePage}
               setActive={(val) => {
                 setActivePage(val);
@@ -318,6 +321,7 @@ function App() {
 
           {!showNav && (
             <Navbar
+              search={search}
               dataObj={data}
               setData={genData}
               toggleNav={toggleNav}
@@ -369,6 +373,16 @@ function App() {
                       city: data.name,
                       country: await c,
                     });
+
+                    setCityData(
+                      cityData.map((curr) => {
+                        return { ...curr, active: false };
+                      })
+                    );
+
+                    setLoader(true);
+                    setCity(text);
+                    setText("");
                   }}
                 >
                   <input

@@ -8,6 +8,7 @@ import { Ri24HoursLine } from "react-icons/ri";
 import { BiCalendarWeek } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
 import Logo from "../assests/weather-logo.png";
+import { useEffect } from "react";
 import Cards from "./Cards";
 
 const Navbar = ({
@@ -23,7 +24,12 @@ const Navbar = ({
   setData,
   dataObj,
   activePage,
+  search,
 }) => {
+  useEffect(() => {
+    console.log(search);
+  }, []);
+
   return (
     <div
       className="nav-container"
@@ -50,6 +56,9 @@ const Navbar = ({
       >
         <div>
           <NavLinks
+            onclick={() => {
+              if (!showNav) toggleNav();
+            }}
             city={cityDaily}
             name="Today"
             dataObj={dataObj}
@@ -62,9 +71,6 @@ const Navbar = ({
                 style={{ marginRight: "20px", fontSize: "30px" }}
               />
             }
-            onclick={() => {
-              if (!showNav) toggleNav();
-            }}
           ></NavLinks>
         </div>
         <div>

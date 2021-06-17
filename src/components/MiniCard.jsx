@@ -5,10 +5,16 @@ const MiniCard = ({ pic, page, temp, text, miniData, arr, daily, day }) => {
         onClick={() => {
           if (page == "today" || page == "hourly") {
             let clicked = arr.findIndex((obj) => {
-              return obj.temp === temp;
+              return obj.temp == temp;
             });
 
-            miniData(temp, text, arr.humidity, arr.wind_speed, pic);
+            miniData(
+              temp,
+              text,
+              arr[clicked].humidity,
+              arr[clicked].wind_speed,
+              pic
+            );
             console.log(pic);
           } else if (page == "daily") {
             miniData(daily.t, daily.day, daily.h, daily.w, pic);
