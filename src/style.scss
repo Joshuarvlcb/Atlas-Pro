@@ -46,7 +46,29 @@
     -moz-transform: rotate(720deg) scale(0.8);
   }
 }
+.time--city {
+  bottom: 29px;
+  right: 0;
+  padding: 7px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 5px;
 
+  position: absolute;
+  background-color: #ffffff;
+}
+.time {
+  top: 0;
+  border-bottom-left-radius: 5px;
+
+  right: 0;
+  position: absolute;
+  padding: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  border-top-right-radius: 15px;
+  background-color: #1dbfdb;
+}
 @keyframes ball1 {
   0% {
     box-shadow: 30px 0 0 #f8b334;
@@ -183,7 +205,7 @@
       justify-content: flex-start;
       border: 2px solid rgb(247, 165, 176);
       color: rgb(34, 34, 34);
-      transition: all 0.5s ease;
+      transition: all 0.2s ease-out;
       position: relative;
       bottom: 0;
 

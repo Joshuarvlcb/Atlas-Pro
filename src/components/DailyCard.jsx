@@ -2,6 +2,13 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProgressBar from "react-bootstrap/ProgressBar";
+const time = () => {
+  let time = new Intl.DateTimeFormat("en", {
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date());
+  return time;
+};
 const DailyCard = ({ temp, cityDaily }) => {
   return (
     <div id="dailyCard" style={{ height: "55%", fontFamily: "Quicksand" }}>
@@ -9,15 +16,19 @@ const DailyCard = ({ temp, cityDaily }) => {
         className="d-flex justify-content-center card-con-con"
         style={{ height: "100%" }}
       >
-        <div as="div" className="card-con">
+        <div style={{ position: "relative" }} as="div" className="card-con">
           <Row>
             <Col>
               {" "}
               <div
-                className="d-flex justify-content-center"
-                style={{ paddingTop: "10px" }}
+                className="d-flex justify-content-center
+                align-items-center
+                "
+                style={{ paddingTop: "12px", paddingBottom: "8px" }}
               >
-                <img src={temp.icon} height="60px" alt="" />
+                <img src={temp.icon} height="55px" alt="" />
+                <div className="time">{cityDaily.time || time()}</div>
+                {/* <p style={{ marginLeft: "30px", fontSize: "25px" }}>10:27</p> */}
               </div>
             </Col>
             {/* <Col className = 'd-flex justify-content-starta flex-column text-con align-items-center ' style = {{paddingTop:'10px',paddingLeft:'0px'}} >

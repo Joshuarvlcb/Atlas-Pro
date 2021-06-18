@@ -22,7 +22,6 @@ const NavLinks = ({
       }
     );
 
-    console.log([data.coord.lat, data.coord.lon]);
     return [data.coord.lat, data.coord.lon];
   };
   useEffect(() => {
@@ -40,14 +39,17 @@ const NavLinks = ({
         }
       );
       let helper = () => {
-        return activePage.toLowerCase() === "today"
-          ? [
-              weatherData.hourly[0],
-              weatherData.hourly[8],
-              weatherData.hourly[12],
-              weatherData.hourly[18],
-            ]
-          : weatherData.daily.slice(0, 7);
+        if (activePage.toLowerCase() === "today")
+          return [
+            weatherData.hourly[0],
+            weatherData.hourly[8],
+            weatherData.hourly[12],
+            weatherData.hourly[18],
+          ];
+        if (activePage.toLowerCase() === "daily")
+          return weatherData.daily.slice(0, 7);
+
+        if (activePage.toLowerCase() === "hourly") return weatherData.hourly;
       };
       let arr = {};
       let n = activePage.toLowerCase();
@@ -60,9 +62,7 @@ const NavLinks = ({
           }
         }
       });
-      console.log(activePage);
-      console.log(weatherData.hourly.slice(0, 4));
-      console.log(arr[activePage]);
+
       setData(arr, activePage);
     };
     setTimeout(() => {

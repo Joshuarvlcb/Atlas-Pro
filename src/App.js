@@ -51,24 +51,28 @@ function App() {
       name: "Buckeye",
       active: true,
       src: Az,
+      locale: "en",
     },
     {
       id: 2,
       name: "Paris",
       active: false,
       src: Paris,
+      locale: "fr",
     },
     {
       id: 3,
       name: "Venice",
       active: false,
       src: Italy,
+      locale: "it",
     },
     {
       id: 4,
       name: "London",
       active: false,
       src: England,
+      locale: "gbr",
     },
   ]);
   const key = "fc628e265dd36f7b1b6b58fe603edde8";
@@ -202,13 +206,17 @@ function App() {
   }, []);
 
   const cityName = async (e) => {
+    if (e.target.closest(".time--city")) return;
+    let time;
     let target;
     if (e.target.textContent) {
       setCity(e.target.textContent);
       target = e.target.textContent;
     } else {
       setCity(e.target.alt);
+      console.log(e.target);
       target = e.target.alt;
+      time = e.target.dataset.time;
     }
     let country;
 
@@ -229,13 +237,14 @@ function App() {
         country = "United States";
         break;
     }
-
     getWeather(target.toLowerCase());
 
     setCityDaily({
       city: target,
       country: country,
+      time: time,
     });
+
     setCityData(
       cityData.map((obj) => {
         if (obj.name === target) {
@@ -444,8 +453,9 @@ function App() {
                         chart={chart}
                         chartToggle={() => setChart(!chart)}
                         miniData={miniCardData}
-                        arr={data["hourly"]}
+                        arr={arrData}
                         city={city}
+                        loader={loader}
                         active={activePage}
                         currSlide={currSlide}
                         setCurrSlide={(val) => {

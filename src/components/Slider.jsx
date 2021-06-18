@@ -55,9 +55,6 @@ const Slider = ({
   };
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const times = ["Morning", "Noon", "Evening", "Night"];
-  useEffect(() => {
-    console.log(active);
-  }, [arr]);
 
   return (
     <div className="slider">
