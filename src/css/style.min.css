@@ -355,8 +355,8 @@
 
 @media only screen and (max-width: 900px) {
   .bigContainer {
-    background-color: #f3f3f3 !important;
     height: auto;
+    background-color: #f3f3f3 !important;
   }
   .weather-forcast {
     display: none;
@@ -375,9 +375,9 @@
     animation-fill-mode: forwards;
     animation-duration: 0.5s;
     width: 100% !important;
-    height: 100% !important;
+    height: auto !important;
     border-radius: 0 !important;
-    position: fixed;
+    position: absolute;
     z-index: 100;
     left: 0;
     top: 0;
@@ -385,35 +385,35 @@
   .nav-container nav {
     padding: 0px;
   }
+  .nav-container img {
+    margin-top: 20px;
+  }
   .nav-container .card-con {
     display: none;
   }
-  .nav-container .navCities {
-    display: grid;
-    grid-template-columns: 45% 45%;
-    color: white;
-    gap: 5%;
-    margin: 2rem auto;
-    margin-left: 1rem;
-    width: 95%;
+  .nav-container .nav-link {
+    margin-top: 50px;
   }
-  .nav-container .navCities .city-card {
-    width: 100%;
+  .nav-container .navCities {
     display: flex;
     flex-direction: column;
-    margin-right: 22.5%;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
-  .nav-container .navCities .city-card img {
-    width: 20vh;
+  .nav-container .navCities .city-card {
+    margin: 15px 0;
+  }
+  .nav-container .navCities .city-card .time--city {
+    display: none;
   }
   .nav-container .navCities .city-card div {
     width: 100%;
-    margin-left: 100%;
     text-align: center;
   }
   .forcast-con {
     width: 100%;
-    min-height: auto;
+    min-height: 100vh;
   }
   .daily-card-con {
     width: 95vw;
@@ -449,6 +449,9 @@
     z-index: 3;
     flex-direction: column;
   }
+  .slider .daily-slider .date {
+    padding-left: 50px;
+  }
   .slider .daily-slider .mini-card {
     width: 90vw !important;
     margin: auto;
@@ -459,8 +462,9 @@
     margin-bottom: 1rem;
     position: relative;
   }
-  .slider .daily-slider .mini-card div img {
+  .slider .daily-slider .mini-card img {
     position: relative !important;
+    left: 10px;
   }
   .slider .daily-slider .mini-card .text-container {
     width: 100%;

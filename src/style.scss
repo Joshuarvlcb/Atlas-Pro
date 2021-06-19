@@ -352,8 +352,8 @@
 
 @media only screen and (max-width: 900px) {
   .bigContainer {
-    background-color: #f3f3f3 !important;
     height: auto;
+    background-color: #f3f3f3 !important;
   }
   .weather-forcast {
     display: none;
@@ -373,9 +373,9 @@
     animation-fill-mode: forwards;
     animation-duration: 0.5s;
     width: 100% !important;
-    height: 100% !important;
+    height: auto !important;
     border-radius: 0 !important;
-    position: fixed;
+    position: absolute;
     z-index: 100;
     left: 0;
     top: 0;
@@ -383,31 +383,32 @@
     nav {
       padding: 0px;
     }
+    img {
+      margin-top: 20px;
+    }
     .card-con {
       display: none;
     }
-
+    .nav-link {
+      margin-top: 50px;
+    }
     .navCities {
-      display: grid;
-      grid-template-columns: 45% 45%;
-      color: white;
-      gap: 5%;
-      margin: 2rem auto;
-      margin-left: 1rem;
-      width: 95%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
       // justify-items: center;
 
       .city-card {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin-right: 22.5%;
+        margin: 15px 0;
+        .time--city {
+          display: none;
+        }
         img {
-          width: 20vh;
         }
         div {
           width: 100%;
-          margin-left: 100%;
           text-align: center;
         }
       }
@@ -416,7 +417,7 @@
 
   .forcast-con {
     width: 100%;
-    min-height: auto;
+    min-height: 100vh;
   }
   .daily-card-con {
     width: 95vw;
@@ -458,6 +459,9 @@
 
       flex-direction: column;
 
+      .date {
+        padding-left: 50px;
+      }
       .mini-card {
         width: 90vw !important;
         margin: auto;
@@ -467,8 +471,9 @@
         justify-content: space-between;
         margin-bottom: 1rem;
         position: relative;
-        div img {
+        img {
           position: relative !important;
+          left: 10px;
         }
 
         .text-container {

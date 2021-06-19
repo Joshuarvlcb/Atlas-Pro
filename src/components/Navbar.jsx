@@ -42,10 +42,11 @@ const Navbar = ({
       <Header logo={Logo} />
 
       <Nav
-        className="d-flex
+        className={`d-flex
         flex-column 
-        justify-content-between 
-       "
+        justify-content-between
+        ${window.innerWidth <= 900 ? "align-items-center" : ""} 
+        `}
         style={{
           height: "31%",
           fontFamily: "Quicksand, sans-serif",

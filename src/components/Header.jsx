@@ -17,8 +17,7 @@ const Header = ({ logo }) => {
           }}
         >
           {" "}
-          <img height="50px" src={logo} alt="ATLAS"></img>
-          <div className="mx-2">ATLAS</div>
+          <img height="90px" src={logo} alt="ATLAS"></img>
         </div>
       </div>
     </>

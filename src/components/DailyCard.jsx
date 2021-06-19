@@ -23,7 +23,7 @@ const DailyCard = ({ temp, cityDaily }) => {
               <div
                 className={`d-flex
                 ${
-                  window.innerWidth <= 1500
+                  window.innerWidth <= 1500 && window.innerWidth >= 900
                     ? "justify-content-start"
                     : "justify-content-center"
                 } 
