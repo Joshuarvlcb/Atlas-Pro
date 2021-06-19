@@ -80,6 +80,7 @@ const NavLinks = ({
         style={{
           color: "white",
           fontWeight: "600",
+          fontSize: "17px",
         }}
         className={"d-flex    align-items-center  activeTab "}
       >

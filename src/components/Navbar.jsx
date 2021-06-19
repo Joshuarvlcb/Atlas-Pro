@@ -68,7 +68,7 @@ const Navbar = ({
             logo={
               <BiHome
                 color="white"
-                style={{ marginRight: "20px", fontSize: "30px" }}
+                style={{ marginRight: "20px", fontSize: "35px" }}
               />
             }
           ></NavLinks>
@@ -84,7 +84,7 @@ const Navbar = ({
             logo={
               <Ri24HoursLine
                 color="white"
-                style={{ marginRight: "20px", fontSize: "30px" }}
+                style={{ marginRight: "20px", fontSize: "35px" }}
               />
             }
             onclick={() => {
@@ -103,7 +103,7 @@ const Navbar = ({
             logo={
               <BiCalendarWeek
                 color="white"
-                style={{ marginRight: "20px", fontSize: "30px" }}
+                style={{ marginRight: "20px", fontSize: "35px" }}
               />
             }
             onclick={() => {

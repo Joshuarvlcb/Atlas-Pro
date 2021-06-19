@@ -91,7 +91,7 @@ const HourlySlider = ({
   };
 
   return (
-    <div className="slider hourlySlider">
+    <div className="slider ">
       <h3
         style={{
           paddingBottom: "20px",
@@ -114,7 +114,7 @@ const HourlySlider = ({
                 pic={`https://img.icons8.com/office/50/000000/${getIcon(
                   card.weather[0].icon
                 )}`}
-                temp={card.temp}
+                temp={JSON.stringify(card.temp)}
                 arr={arr}
                 miniData={miniData}
                 page={active}
@@ -124,10 +124,10 @@ const HourlySlider = ({
             );
           })
         )}
-      </div>
-      <div className="buttonContainer">
-        <ImArrowLeft2 onClick={back} />
-        <ImArrowRight2 onClick={next} />
+        <div className="buttonContainer">
+          <ImArrowLeft2 onClick={back} />
+          <ImArrowRight2 onClick={next} />
+        </div>
       </div>
     </div>
   );
