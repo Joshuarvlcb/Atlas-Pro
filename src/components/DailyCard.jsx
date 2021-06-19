@@ -21,14 +21,23 @@ const DailyCard = ({ temp, cityDaily }) => {
             <Col>
               {" "}
               <div
-                className="d-flex justify-content-center
+                className={`d-flex
+                ${
+                  window.innerWidth <= 1500
+                    ? "justify-content-start"
+                    : "justify-content-center"
+                } 
                 align-items-center
-                "
-                style={{ paddingTop: "12px", paddingBottom: "8px" }}
+                `}
+                style={{
+                  paddingTop: "12px",
+                  paddingBottom: "8px",
+                  paddingLeft: "10px",
+                }}
               >
-                <img src={temp.icon} height="55px" alt="" />
+                <img src={temp.icon} height="50px" alt="" />
+
                 <div className="time">{cityDaily.time || time()}</div>
-                {/* <p style={{ marginLeft: "30px", fontSize: "25px" }}>10:27</p> */}
               </div>
             </Col>
             {/* <Col className = 'd-flex justify-content-starta flex-column text-con align-items-center ' style = {{paddingTop:'10px',paddingLeft:'0px'}} >
@@ -88,9 +97,7 @@ const DailyCard = ({ temp, cityDaily }) => {
           </Row>
           <Row className="mt-2">
             <Col className="d-flex justify-content-around">
-              <div style={{ fontWeight: "500", fontWeight: "bold" }}>
-                Wind Speed:
-              </div>
+              <div style={{ fontWeight: "500", fontWeight: "bold" }}>Wind:</div>
 
               <div style={{ fontWeight: "500", fontWeight: "bold" }}>
                 {temp.wind} mph

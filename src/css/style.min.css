@@ -597,4 +597,16 @@ h3 {
   color: #3d3d3d;
   transition: 0.2s;
 }
+
+@media only screen and (max-width: 1170px) {
+  .input {
+    width: 230px;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .time {
+    padding: 7px;
+  }
+}
 /*# sourceMappingURL=style.min.css.map */
