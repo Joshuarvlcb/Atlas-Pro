@@ -23,6 +23,7 @@ import HourlySlider from "./components/HourlySlider.jsx";
 import DailyCard from "./components/DailyCard";
 import { GiHamburgerMenu } from "react-icons/gi";
 import axios from "axios";
+import { getIcon } from "./components/Slider";
 
 function Dashboard() {
   const history = useHistory();
@@ -153,8 +154,11 @@ function Dashboard() {
       temp: data.main.temp,
       humidity: data.main.humidity,
       wind: data.wind.speed,
-      icon: "https://img.icons8.com/office/50/000000/rainbow.png",
+      icon: `https://img.icons8.com/office/50/000000/${getIcon(
+        data.weather[0].icon
+      )}`,
     });
+    console.log(data.weather[0].icon);
     // return [data.coord.lat,data.coord.lon]
   };
   const getCoords = async (query) => {
@@ -173,7 +177,9 @@ function Dashboard() {
       temp: data.main.temp,
       humidity: data.main.humidity,
       wind: data.wind.speed,
-      icon: "https://img.icons8.com/office/50/000000/rainbow.png",
+      icon: `https://img.icons8.com/office/50/000000/${getIcon(
+        data.weather[0].icon
+      )}`,
     });
     console.log([data.coord.lat, data.coord.lon]);
     return [data.coord.lat, data.coord.lon];

@@ -610,3 +610,11 @@ h3 {
     padding: 7px;
   }
 }
+@media only screen and (max-width: 550px) {
+  .image {
+    display: none;
+  }
+  .card {
+    flex-basis: 100%;
+  }
+}
