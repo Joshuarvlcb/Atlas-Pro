@@ -16,6 +16,7 @@ import {
   Switch as Link,
   Route,
   useHistory,
+  Redirect,
 } from "react-router-dom";
 import weather from "./assests/weather.json";
 import Settings from "./components/Settings";
@@ -457,6 +458,7 @@ function Dashboard() {
               </div>
 
               <Router>
+                <Redirect to="/slider" />
                 <Route
                   path="/slider"
                   component={() => {
@@ -486,7 +488,7 @@ function Dashboard() {
                       />
                     );
                   }}
-                />
+                ></Route>
                 <Route
                   path="/chart"
                   component={() => (

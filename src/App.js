@@ -10,11 +10,10 @@ import {
 function App() {
   return (
     <>
+      <Dashboard />
       <Router>
-        <Redirect to="/slider" />
         <Switch>
-          <Route exact path="/slider" component={Dashboard}></Route>
-
+          <Route exact path="/slider" component={Dashboard} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
         </Switch>
